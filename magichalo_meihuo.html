@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>魅惑術 — MAGIC HALO</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=M+PLUS+Rounded+1c:wght@400;500;700&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
+<style>
+/* ══ 莫蘭迪 · 胭脂玫瑰 × 霧紫 × 玫瑰金 ══ */
+:root {
+  --bg:        #F8F0F4;
+  --bg2:       #F0E4EC;
+  --bg3:       #E8D8E4;
+  --rose:      #C88098;
+  --rose-d:    #A86080;
+  --crimson:   #885060;
+  --crimson-d: #603040;
+  --mist:      #A890B8;
+  --mist-d:    #886898;
+  --gold:      #C8A070;
+  --gold-l:    #DEC090;
+  --gold-p:    #EED8B8;
+  --td:        #30202C;
+  --tm:        #583048;
+  --ts:        #906880;
+  --tt:        #C0A0B4;
+  --bdr:       rgba(200,128,152,0.22);
+  --bdg:       rgba(200,160,112,0.3);
+  --shd:       rgba(200,128,152,0.14);
+  --wh:        #FFFFFF;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg);
+  color:var(--td);
+  font-family:'M PLUS Rounded 1c','Noto Sans TC',sans-serif;
+  font-weight:400;
+  overflow-x:hidden;
+  line-height:1.8;
+}
+
+/* ══ 標題：思源宋體 胭脂→玫瑰金漸層 ══ */
+.ht {
+  font-family:'Noto Serif TC',serif;
+  font-weight:900;
+  line-height:1.35;
+  letter-spacing:3px;
+  background:linear-gradient(180deg,#EEC0D0 0%,#C07090 48%,#884060 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  -webkit-mask-image:linear-gradient(180deg,#000 50%,rgba(0,0,0,0.65) 100%);
+  mask-image:linear-gradient(180deg,#000 50%,rgba(0,0,0,0.65) 100%);
+}
+.st {
+  font-family:'M PLUS Rounded 1c',sans-serif;
+  font-weight:700; font-size:14px; letter-spacing:1px;
+  color:var(--crimson-d); margin-bottom:7px; display:block;
+}
+.bt {
+  font-size:14px; line-height:2.2; color:var(--ts); letter-spacing:0.5px;
+}
+.bt strong {
+  font-weight:700; color:var(--crimson);
+  -webkit-text-fill-color:var(--crimson);
+  background:none; -webkit-background-clip:initial; background-clip:initial;
+}
+
+/* ══ 分類標籤 ══ */
+.tag {
+  display:inline-flex; align-items:center; gap:7px;
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:10px; letter-spacing:4px; color:var(--wh);
+  background:linear-gradient(135deg,var(--rose-d),var(--crimson));
+  padding:5px 14px 5px 10px; border-radius:20px;
+  margin-bottom:14px; white-space:nowrap;
+}
+.tag::before { content:'💫'; font-size:9px; font-style:normal; }
+
+/* ══ 容器 ══ */
+.wrap    { max-width:820px; margin:0 auto; padding:72px 28px; width:100%; }
+.wrap-sm { max-width:700px; margin:0 auto; padding:72px 28px; width:100%; }
+.sec-bg1 { background:linear-gradient(160deg,#ECD4E0,#E4C8D8); }
+.sec-bg2 { background:linear-gradient(135deg,#F4E4EE,#ECD8E8); }
+
+/* ══ 分隔線 ══ */
+.div { display:flex; align-items:center; gap:14px; max-width:600px; margin:0 auto; padding:0 28px; }
+.div-l { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(200,128,152,0.35),transparent); }
+.div-s { color:var(--rose); font-size:11px; letter-spacing:6px; font-style:italic; font-family:'Cormorant Garamond',serif; }
+
+/* ══ HERO ══ */
+.hero {
+  position:relative; min-height:100vh;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center; padding:80px 24px 100px;
+  overflow:hidden;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 90% 60% at 25% 5%,  rgba(232,176,200,0.45) 0%,transparent 55%),
+    radial-gradient(ellipse 70% 55% at 78% 88%, rgba(200,160,192,0.35) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 40% at 50% 50%, rgba(168,144,184,0.15) 0%,transparent 60%),
+    linear-gradient(168deg,#FDF6FA 0%,#F8ECF4 45%,#F2E4F0 100%);
+}
+
+/* Hero SVG */
+.hero-svg-wrap { position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden; }
+.hero-svg-wrap svg { position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:900px;opacity:0.07; }
+
+/* 漂浮星點 */
+.spt { position:absolute; pointer-events:none; animation:sptf ease-in-out infinite; }
+.s1{top:12%;left:9%;font-size:12px;animation-duration:7s;color:var(--gold);opacity:0.4;}
+.s2{top:58%;right:7%;font-size:10px;animation-duration:10s;animation-delay:2s;color:var(--rose);opacity:0.35;}
+.s3{bottom:20%;left:6%;font-size:14px;animation-duration:13s;animation-delay:5s;color:var(--mist);opacity:0.3;}
+.s4{top:32%;right:10%;font-size:9px;animation-duration:9s;animation-delay:1s;color:var(--gold);opacity:0.38;}
+.s5{top:18%;right:18%;font-size:11px;animation-duration:11s;animation-delay:3s;color:var(--rose);opacity:0.32;}
+@keyframes sptf{0%,100%{transform:translateY(0) rotate(0deg);opacity:0.28;}50%{transform:translateY(-16px) rotate(20deg);opacity:0.45;}}
+
+.ring { position:absolute;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none; }
+.ring1{width:540px;height:540px;border:1px solid rgba(200,128,152,0.14);animation:rspin 38s linear infinite;}
+.ring2{width:380px;height:380px;border:1px solid rgba(200,160,112,0.1);animation:rspin 26s linear infinite reverse;}
+@keyframes rspin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+.hero-inner { position:relative;z-index:2;max-width:720px; }
+
+.hero-brand {
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:11px;letter-spacing:6px;color:var(--gold);
+  margin-bottom:22px;
+  opacity:0;animation:up 0.9s 0.2s forwards;
+}
+.hero-brand::before,.hero-brand::after{content:'—';opacity:0.4;}
+
+.hero-eye {
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(14px,2.2vw,18px);color:var(--rose-d);
+  letter-spacing:3px;margin-bottom:16px;
+  opacity:0;animation:up 0.9s 0.4s forwards;
+}
+
+.hero-h1 {
+  font-family:'Noto Serif TC',serif;font-weight:900;
+  font-size:clamp(28px,6vw,54px);
+  line-height:1.3;letter-spacing:4px;margin-bottom:8px;
+  background:linear-gradient(180deg,#EEC0D0 0%,#C07090 50%,#884060 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  -webkit-mask-image:linear-gradient(180deg,#000 50%,rgba(0,0,0,0.68) 100%);
+  mask-image:linear-gradient(180deg,#000 50%,rgba(0,0,0,0.68) 100%);
+  opacity:0;animation:up 0.9s 0.6s forwards;
+}
+
+.hero-quote {
+  background:rgba(255,255,255,0.5);backdrop-filter:blur(10px);
+  border:1px solid rgba(200,128,152,0.28);
+  border-left:3px solid var(--rose);
+  padding:16px 24px;border-radius:12px;margin-bottom:28px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(14px,2vw,17px);color:var(--tm);
+  letter-spacing:2px;line-height:1.9;
+  opacity:0;animation:up 0.9s 0.75s forwards;
+}
+
+.hero-sub {
+  font-size:clamp(13px,1.8vw,15px);line-height:2.3;
+  color:var(--ts);margin-bottom:44px;letter-spacing:0.8px;
+  opacity:0;animation:up 0.9s 0.9s forwards;
+}
+.hero-sub strong {
+  font-weight:700;color:var(--crimson);
+  -webkit-text-fill-color:var(--crimson);
+  background:none;-webkit-background-clip:initial;background-clip:initial;
+}
+
+.hero-btns {
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+  opacity:0;animation:up 0.9s 1.05s forwards;
+}
+.btn-p {
+  background:linear-gradient(135deg,var(--crimson-d),var(--rose-d),var(--gold));
+  background-size:250%;
+  color:var(--wh);font-family:'M PLUS Rounded 1c',sans-serif;
+  font-weight:700;font-size:14px;letter-spacing:3px;
+  padding:15px 40px;border:none;cursor:pointer;
+  text-decoration:none;display:inline-block;border-radius:50px;
+  box-shadow:0 6px 24px rgba(168,96,128,0.3);
+  transition:transform 0.3s,box-shadow 0.3s;
+  animation:shimmer 4s ease-in-out infinite 2s;
+}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(168,96,128,0.42);}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+.btn-g {
+  background:rgba(255,255,255,0.55);backdrop-filter:blur(8px);
+  border:1.5px solid var(--bdr);color:var(--crimson);
+  font-family:'M PLUS Rounded 1c',sans-serif;
+  font-size:13px;letter-spacing:2px;
+  padding:15px 30px;cursor:pointer;text-decoration:none;
+  display:inline-block;border-radius:50px;
+  transition:background 0.3s,border-color 0.3s;
+}
+.btn-g:hover{background:rgba(255,255,255,0.8);border-color:var(--rose);}
+
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:up 1s 1.8s forwards;}
+.scroll-hint span{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:9px;letter-spacing:5px;color:var(--tt);}
+.scroll-orb{width:7px;height:7px;border-radius:50%;background:var(--rose);opacity:0.5;animation:orb 1.6s ease-in-out infinite;}
+@keyframes orb{0%,100%{transform:translateY(0);opacity:0.5}50%{transform:translateY(11px);opacity:0.18}}
+
+/* ══ What is ══ */
+.intro-card {
+  background:rgba(255,255,255,0.6);backdrop-filter:blur(10px);
+  border:1px solid var(--bdr);padding:32px 28px;margin-top:24px;
+  border-radius:20px;box-shadow:0 4px 32px var(--shd);position:relative;
+}
+.intro-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rose),var(--gold-l),var(--rose));border-radius:20px 20px 0 0;}
+.intro-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50px;background:linear-gradient(transparent,rgba(255,255,255,0.28));border-radius:0 0 20px 20px;pointer-events:none;}
+
+.info-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px;}
+@media(max-width:600px){.info-row{grid-template-columns:1fr;}}
+.info-card{background:linear-gradient(150deg,rgba(255,255,255,0.75),rgba(248,232,244,0.65));border:1px solid rgba(200,128,152,0.2);padding:20px 18px;border-radius:14px;position:relative;overflow:hidden;}
+.info-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:28px;background:linear-gradient(transparent,rgba(248,232,244,0.35));pointer-events:none;}
+.info-title{font-family:'Noto Serif TC',serif;font-weight:700;font-size:15px;letter-spacing:3px;background:linear-gradient(135deg,var(--gold),var(--gold-l));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:9px;}
+.info-card p{font-size:13px;color:var(--ts);line-height:1.9;}
+
+/* ══ 警訊 ══ */
+.signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;}
+@media(max-width:600px){.signal-grid{grid-template-columns:1fr;}}
+.signal-card{background:rgba(255,255,255,0.55);backdrop-filter:blur(8px);border:1px solid rgba(200,128,152,0.2);padding:24px 18px;border-radius:16px;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;}
+.signal-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px var(--shd);}
+.signal-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:36px;background:linear-gradient(transparent,rgba(255,255,255,0.28));pointer-events:none;border-radius:0 0 16px 16px;}
+.signal-card .sc-icon{font-size:22px;margin-bottom:10px;display:block;}
+.signal-card p{font-size:13px;color:var(--ts);line-height:1.9;}
+
+/* ══ 三大福報 ══ */
+.merit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:28px;}
+@media(max-width:600px){.merit-grid{grid-template-columns:1fr;}}
+.merit-cell{background:rgba(255,255,255,0.55);backdrop-filter:blur(6px);border:1px solid rgba(200,128,152,0.2);padding:28px 20px;border-radius:18px;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;text-align:center;}
+.merit-cell:hover{transform:translateY(-4px);box-shadow:0 8px 22px var(--shd);border-color:var(--bdg);}
+.merit-cell::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--gold-l));border-radius:18px 18px 0 0;opacity:0;transition:opacity 0.3s;}
+.merit-cell:hover::before{opacity:1;}
+.merit-cell::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(transparent,rgba(255,255,255,0.32));pointer-events:none;border-radius:0 0 18px 18px;}
+.merit-icon{font-size:32px;display:block;margin-bottom:12px;}
+.merit-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10px;letter-spacing:3px;color:var(--rose);margin-bottom:8px;display:block;}
+.merit-title{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:700;font-size:14px;letter-spacing:2px;background:linear-gradient(135deg,var(--crimson-d),var(--rose-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:8px;}
+.merit-desc{font-size:12px;color:var(--ts);line-height:1.85;}
+
+/* ══ 引言 ══ */
+.quote-block{text-align:center;padding:60px 32px;position:relative;background:linear-gradient(135deg,#F4E4EE,#ECD8E8);overflow:hidden;}
+.quote-pattern{position:absolute;inset:0;pointer-events:none;opacity:0.06;}
+.quote-block::before{content:'"';position:absolute;top:20px;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:80px;color:var(--rose);opacity:0.15;line-height:1;}
+.quote-main{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.8vw,24px);color:var(--tm);letter-spacing:3px;line-height:1.9;position:relative;z-index:1;}
+.quote-sub{font-size:12px;color:var(--tt);letter-spacing:2px;margin-top:12px;font-style:italic;}
+
+/* ══ 科儀 ══ */
+.ritual-layout{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;align-items:start;}
+@media(max-width:700px){.ritual-layout{grid-template-columns:1fr;}}
+.ritual-svg{display:flex;align-items:center;justify-content:center;padding-top:32px;}
+.ritual-svg svg{width:100%;max-width:260px;}
+.steps{margin-top:32px;display:flex;flex-direction:column;}
+.step{display:flex;}
+.step-l{display:flex;flex-direction:column;align-items:center;width:52px;flex-shrink:0;}
+.step-c{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--gold));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;z-index:1;box-shadow:0 4px 14px rgba(200,128,152,0.32);}
+.step-line{flex:1;width:1px;background:linear-gradient(to bottom,rgba(200,128,152,0.35),transparent);min-height:32px;}
+.step-b{flex:1;min-width:0;padding:2px 0 44px 20px;word-break:break-word;}
+.step-b .st{margin-bottom:5px;}
+.step-b p{font-size:13px;color:var(--ts);line-height:1.95;}
+
+/* ══ 特別加購區塊 ══ */
+.special-bg{background:linear-gradient(135deg,var(--crimson-d),var(--rose-d),var(--mist-d));padding:56px 0;position:relative;overflow:hidden;}
+.special-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(200,160,112,0.1),transparent 65%);pointer-events:none;}
+.special-inner{max-width:720px;margin:0 auto;padding:0 28px;position:relative;z-index:1;text-align:center;}
+.special-h{font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(18px,3vw,26px);letter-spacing:3px;margin-bottom:12px;background:linear-gradient(180deg,#F0D0E0 0%,#DCA0B8 60%,#B87090 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.special-desc{font-size:13px;color:rgba(255,255,255,0.75);line-height:2;margin-bottom:28px;letter-spacing:0.5px;}
+.special-combo{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center;}
+.combo-item{background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:16px 22px;text-align:center;}
+.combo-item .ci-label{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.6);margin-bottom:6px;display:block;}
+.combo-item .ci-name{font-family:'Noto Serif TC',serif;font-weight:900;font-size:16px;letter-spacing:2px;background:linear-gradient(135deg,var(--gold-l),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:4px;}
+.combo-item .ci-price{font-family:'Noto Serif TC',serif;font-weight:700;font-size:20px;color:rgba(255,255,255,0.9);display:block;}
+.combo-plus{font-size:24px;color:rgba(255,255,255,0.4);font-family:'Cormorant Garamond',serif;}
+
+/* ══ FAQ ══ */
+.faq-list{margin-top:24px;display:flex;flex-direction:column;gap:9px;}
+.faq-item{background:rgba(255,255,255,0.58);backdrop-filter:blur(8px);border:1px solid rgba(200,128,152,0.22);border-radius:14px;overflow:hidden;box-shadow:0 2px 10px var(--shd);}
+.faq-q{padding:18px 20px;font-family:'M PLUS Rounded 1c',sans-serif;font-weight:600;font-size:14px;color:var(--td);letter-spacing:0.5px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:background 0.3s;gap:12px;}
+.faq-q:hover{background:rgba(255,255,255,0.5);}
+.faq-q .fq-icon{color:var(--rose);font-size:10px;flex-shrink:0;}
+.faq-q .fq-arr{color:var(--rose-d);font-size:20px;transition:transform 0.3s;flex-shrink:0;}
+.faq-item.open .fq-arr{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;font-size:13px;color:var(--ts);line-height:1.95;padding:0 20px;background:linear-gradient(135deg,rgba(255,255,255,0.42),rgba(248,232,244,0.3));border-top:1px solid transparent;}
+.faq-item.open .faq-a{max-height:280px;padding:16px 20px;border-top-color:rgba(200,128,152,0.16);}
+/* ⭐ 特別標記 FAQ */
+.faq-item.starred .faq-q{background:linear-gradient(135deg,rgba(248,232,244,0.6),rgba(255,255,255,0.5));}
+.faq-item.starred .fq-icon{color:var(--gold);}
+
+/* ══ CTA ══ */
+.closing-bg{background:linear-gradient(160deg,#ECD4E0,#E4C8D8,#ECD4E0);padding:90px 0;text-align:center;position:relative;overflow:hidden;}
+.closing-bg::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(200,160,112,0.08),transparent 60%);pointer-events:none;}
+.closing-pattern{position:absolute;inset:0;pointer-events:none;opacity:0.06;}
+.closing-inner{max-width:600px;margin:0 auto;padding:0 28px;position:relative;z-index:1;}
+.closing-h{font-family:'Noto Serif TC',serif;font-weight:900;font-size:clamp(20px,3.5vw,32px);letter-spacing:3px;margin-bottom:10px;background:linear-gradient(180deg,#EEC0D0 0%,#C07090 55%,#884060 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;-webkit-mask-image:linear-gradient(180deg,#000 50%,rgba(0,0,0,0.68) 100%);mask-image:linear-gradient(180deg,#000 50%,rgba(0,0,0,0.68) 100%);}
+.closing-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(14px,2vw,18px);color:var(--tm);letter-spacing:2px;line-height:2;margin-bottom:36px;}
+.cta-card{background:rgba(255,255,255,0.68);backdrop-filter:blur(16px);border:1px solid rgba(200,128,152,0.25);padding:44px 36px;border-radius:28px;box-shadow:0 12px 56px rgba(200,128,152,0.16);position:relative;}
+.cta-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rose),var(--gold-l),var(--rose));background-size:200%;animation:stripe 3s linear infinite;border-radius:28px 28px 0 0;}
+@keyframes stripe{0%{background-position:0%}100%{background-position:200%}}
+.cta-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.96);border:1px solid var(--bdg);padding:4px 18px;border-radius:20px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10px;letter-spacing:4px;color:var(--gold);white-space:nowrap;}
+.price-highlight{background:linear-gradient(135deg,rgba(248,232,244,0.8),rgba(255,252,248,0.7));border:1px solid var(--bdg);border-radius:16px;padding:24px;margin-bottom:28px;text-align:center;}
+.price-highlight .ph-label{font-size:11px;letter-spacing:4px;color:var(--ts);margin-bottom:6px;display:block;}
+.price-highlight .ph-price{font-family:'Noto Serif TC',serif;font-weight:900;font-size:42px;letter-spacing:2px;background:linear-gradient(135deg,var(--gold),var(--gold-l));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:block;}
+.price-highlight .ph-sub{font-size:11px;color:var(--tt);margin-top:6px;letter-spacing:2px;display:block;}
+.cta-points{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;text-align:left;}
+@media(max-width:480px){.cta-points{grid-template-columns:1fr;}}
+.cta-pt{display:flex;gap:10px;align-items:flex-start;background:rgba(248,232,244,0.5);border:1px solid rgba(200,128,152,0.2);padding:14px;border-radius:12px;}
+.cta-pt-icon{color:var(--rose-d);font-size:14px;flex-shrink:0;margin-top:1px;}
+.cta-pt p{font-size:12px;color:var(--tm);line-height:1.7;}
+.cta-pt p strong{font-weight:700;color:var(--crimson-d);display:block;margin-bottom:2px;-webkit-text-fill-color:var(--crimson-d);background:none;}
+.cta-notice{font-size:11px;color:var(--ts);line-height:1.9;margin-bottom:28px;padding:12px 16px;background:rgba(248,232,244,0.5);border:1px solid rgba(200,160,112,0.18);border-radius:10px;text-align:center;}
+.cta-btn{display:block;width:100%;background:linear-gradient(135deg,var(--crimson-d) 0%,var(--rose-d) 45%,var(--gold) 100%);background-size:200%;color:var(--wh);font-family:'M PLUS Rounded 1c',sans-serif;font-weight:700;font-size:16px;letter-spacing:4px;padding:18px 24px;border:none;cursor:pointer;border-radius:50px;box-shadow:0 6px 24px rgba(168,96,128,0.32);text-decoration:none;text-align:center;transition:background-position 0.4s,transform 0.3s,box-shadow 0.3s;animation:shimmer 4s ease-in-out infinite;}
+.cta-btn:hover{background-position:100%;transform:translateY(-3px);box-shadow:0 10px 32px rgba(168,96,128,0.45);}
+.cta-hint{font-size:11px;color:var(--tt);margin-top:14px;letter-spacing:1px;text-align:center;}
+
+/* ══ 緊迫橫幅 ══ */
+.urgency{background:linear-gradient(135deg,var(--crimson-d),var(--rose-d),var(--gold));background-size:200%;animation:shimmer 5s ease-in-out infinite;padding:20px 28px;text-align:center;position:relative;overflow:hidden;}
+.urgency::after{content:'';position:absolute;bottom:0;left:0;right:0;height:36px;background:linear-gradient(transparent,rgba(0,0,0,0.08));pointer-events:none;}
+.urgency p{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;color:rgba(255,255,255,0.92);line-height:1.9;position:relative;z-index:1;}
+.urgency span{color:var(--gold-p);}
+
+/* ══ FOOTER ══ */
+footer{text-align:center;padding:44px 24px;background:var(--bg3);border-top:1px solid var(--bdr);}
+footer .fb{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;letter-spacing:7px;background:linear-gradient(135deg,var(--gold),var(--gold-l));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:9px;}
+footer p{font-size:11px;color:var(--tt);letter-spacing:2px;}
+
+/* ══ REVEAL ══ */
+.rv{opacity:0;transform:translateY(20px);transition:opacity 0.75s ease,transform 0.75s ease;}
+.rv.on{opacity:1;transform:translateY(0);}
+.d1{transition-delay:0.1s}.d2{transition-delay:0.2s}.d3{transition-delay:0.3s}.d4{transition-delay:0.4s}
+
+/* ══ STICKY ══ */
+.sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(248,240,244,0.93);backdrop-filter:blur(14px);border-top:1px solid var(--bdr);padding:11px 18px;z-index:100;display:none;justify-content:center;}
+@media(max-width:640px){.sticky{display:flex;}}
+.sticky a{background:linear-gradient(135deg,var(--crimson-d),var(--rose-d),var(--gold));color:var(--wh);font-family:'M PLUS Rounded 1c',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;padding:13px 32px;text-decoration:none;display:block;width:100%;text-align:center;border-radius:50px;box-shadow:0 4px 18px rgba(168,96,128,0.22);}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Hero SVG 背景：玫瑰花瓣 + 光暈 -->
+  <div class="hero-svg-wrap">
+    <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <defs>
+        <radialGradient id="mhBeam" cx="50%" cy="80%" r="60%">
+          <stop offset="0%" stop-color="#C88098" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#C88098" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <ellipse cx="450" cy="350" rx="320" ry="180" fill="url(#mhBeam)"/>
+      <!-- 玫瑰花瓣散落 -->
+      <ellipse cx="120" cy="110" rx="7" ry="11" fill="#C88098" opacity="0.18" transform="rotate(-25,120,110)"/>
+      <ellipse cx="780" cy="95" rx="6" ry="10" fill="#C88098" opacity="0.15" transform="rotate(20,780,95)"/>
+      <ellipse cx="280" cy="70" rx="5" ry="9" fill="#A890B8" opacity="0.14" transform="rotate(-15,280,70)"/>
+      <ellipse cx="640" cy="80" rx="6" ry="10" fill="#C88098" opacity="0.16" transform="rotate(30,640,80)"/>
+      <ellipse cx="180" cy="240" rx="5" ry="8" fill="#C8A070" opacity="0.12" transform="rotate(-40,180,240)"/>
+      <ellipse cx="740" cy="220" rx="6" ry="9" fill="#C88098" opacity="0.13" transform="rotate(35,740,220)"/>
+      <ellipse cx="420" cy="50" rx="4" ry="7" fill="#A890B8" opacity="0.12" transform="rotate(-10,420,50)"/>
+      <!-- 星光點 -->
+      <circle cx="200" cy="140" r="2.5" fill="#C8A070" opacity="0.2"/>
+      <circle cx="700" cy="150" r="2.5" fill="#C8A070" opacity="0.2"/>
+      <circle cx="450" cy="100" r="3" fill="#C88098" opacity="0.18"/>
+    </svg>
+  </div>
+
+  <div class="ring ring1"></div><div class="ring ring2"></div>
+  <div class="spt s1">✦</div><div class="spt s2">✦</div>
+  <div class="spt s3">✦</div><div class="spt s4">✧</div><div class="spt s5">✦</div>
+
+  <div class="hero-inner">
+    <div class="hero-brand">MAGIC HALO · RITUAL SERVICE</div>
+    <div class="hero-eye">強行奪取眾人目光，開啟頂級桃花暴走模式</div>
+    <h1 class="hero-h1">魅 惑 術</h1>
+    <div class="hero-quote">
+      「平庸的長相可以靠化妝<br>但枯竭的氣場只能靠『魅惑』。」
+    </div>
+    <p class="hero-sub">
+      這不是改變容貌，而是針對您的元神進行<strong>「磁場鍍金」</strong><br>
+      讓您散發出讓人「過目不忘、無由來心動」的霸道魔力<br>
+      走到哪裡，哪裡就是你的主場 💫
+    </p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-p">💫 立即開啟魅惑磁場</a>
+      <a href="#what-is" class="btn-g">了解更多 ↓</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-orb"></div>
+  </div>
+</section>
+
+<!-- ═══ WHAT IS ═══ -->
+<div id="what-is">
+<div class="wrap rv">
+  <div class="tag">01 · WHAT IS 魅惑術</div>
+  <h2 class="ht" style="font-size:clamp(22px,4vw,36px);margin-bottom:18px">別再等緣分<br>你要的是「強制吸引」</h2>
+  <p class="bt">「魅惑術」並非改變容貌，而是針對您的元神進行「磁場鍍金」與「荷爾蒙催發」。這是一場靈魂層面的整容，讓您散發出一種讓人<strong>「過目不忘、無由來心動」</strong>的霸道魔力。</p>
+  <div class="intro-card">
+    <div class="info-row">
+      <div class="info-card">
+        <span class="info-title">氣場的處境</span>
+        <p>很多人條件不差，但在人群中卻像透明人，這叫「磁場封閉」。一般的打扮就像路燈，只能照亮自己，照不進別人的心裡。</p>
+      </div>
+      <div class="info-card">
+        <span class="info-title">法會的意義</span>
+        <p>這是一場「感官維度的全面接管」。法師透過極致魅惑儀軌，強行將您的異性緣與貴人緣提到最高峰。</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="div rv"><div class="div-l"></div><div class="div-s">💫 💫 💫</div><div class="div-l"></div></div>
+
+<!-- ═══ 隱身模式 ═══ -->
+<div class="sec-bg1">
+<div class="wrap">
+  <div class="rv">
+    <div class="tag">02 · SIGNS 你的魅力處於「隱身模式」</div>
+    <h2 class="ht" style="font-size:clamp(20px,3.5vw,32px);margin-bottom:12px">最怕你才華橫溢，卻沒人想多看你一眼</h2>
+    <p class="bt">如果您正處於以下狀態，說明您的魅力磁場已經停滯，急需強力破局：</p>
+  </div>
+  <div class="signal-grid">
+    <div class="signal-card rv d1">
+      <span class="sc-icon">👻</span>
+      <span class="st">透明感</span>
+      <p>明明在場，大家卻總跳過你；明明發了動態，讚數卻寥寥無幾，感覺自己被世界邊緣化。</p>
+    </div>
+    <div class="signal-card rv d2">
+      <span class="sc-icon">😔</span>
+      <span class="st">被動感</span>
+      <p>看著條件不如自己的人身邊圍滿追求者，自己卻始終單身，甚至連「爛桃花」都沒有。</p>
+    </div>
+    <div class="signal-card rv d3">
+      <span class="sc-icon">🧊</span>
+      <span class="st">冷淡感</span>
+      <p>在職場或社交場合，別人對你總是公事公辦，缺乏那份「想照顧你、想親近你」的額外偏愛。</p>
+    </div>
+    <div class="signal-card rv d4">
+      <span class="sc-icon">🥀</span>
+      <span class="st">自卑感</span>
+      <p>對自己的魅力失去信心，感覺自己正在「枯萎」，急需一場能量灌注來重新綻放。</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ 引言 ═══ -->
+<div class="quote-block rv">
+  <svg class="quote-pattern" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="roseP" x="0" y="0" width="44" height="44" patternUnits="userSpaceOnUse">
+        <circle cx="22" cy="22" r="10" fill="none" stroke="#C88098" stroke-width="0.8" opacity="0.6"/>
+        <ellipse cx="22" cy="12" rx="5" ry="9" fill="none" stroke="#C88098" stroke-width="0.5" opacity="0.4"/>
+        <ellipse cx="22" cy="12" rx="5" ry="9" fill="none" stroke="#C88098" stroke-width="0.5" opacity="0.4" transform="rotate(60,22,22)"/>
+        <ellipse cx="22" cy="12" rx="5" ry="9" fill="none" stroke="#C88098" stroke-width="0.5" opacity="0.4" transform="rotate(120,22,22)"/>
+        <circle cx="22" cy="22" r="3" fill="#C8A070" opacity="0.12"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#roseP)"/>
+  </svg>
+  <p class="quote-main">「世界從不眷顧安分的人<br>它只屈服於有魅力的人。」</p>
+  <p class="quote-sub">— MAGIC HALO · 魅惑術科儀</p>
+</div>
+
+<div class="div rv"><div class="div-l"></div><div class="div-s">💫 💫 💫</div><div class="div-l"></div></div>
+
+<!-- ═══ 三大福報 ═══ -->
+<div class="sec-bg2">
+<div class="wrap">
+  <div class="rv">
+    <div class="tag">03 · MERITS 三大瘋狂福報</div>
+    <h2 class="ht" style="font-size:clamp(20px,3.5vw,32px);margin-bottom:18px">完成極致磁場改造，開啟「核爆級」轉變</h2>
+    <p class="bt">這場科儀將為您的社交人生帶來前所未有的蛻變：</p>
+  </div>
+  <div class="merit-grid">
+    <div class="merit-cell rv d1">
+      <span class="merit-icon">👁️</span>
+      <span class="merit-num">miracle 01</span>
+      <span class="merit-title">目光收割，強行焦點</span>
+      <div class="merit-desc">打破路人甲的命定設定，強制顯化「主角氣場」，讓異性、金主、貴人自動被你吸引。</div>
+    </div>
+    <div class="merit-cell rv d2">
+      <span class="merit-icon">🌸</span>
+      <span class="merit-num">miracle 02</span>
+      <span class="merit-title">桃花爆發，萬千寵愛</span>
+      <div class="merit-desc">暴力提升桃花磁場，讓您自帶「讓人想靠近、想保護」的濾鏡，讓愛慕者以不合理的速度增長。</div>
+    </div>
+    <div class="merit-cell rv d3">
+      <span class="merit-icon">✨</span>
+      <span class="merit-num">miracle 03</span>
+      <span class="merit-title">磁場霸道，人見人愛</span>
+      <div class="merit-desc">讓您的社交手段具備「洗腦級」的親和力，讓原本難搞的人在你面前都變得溫柔順從。</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="div rv"><div class="div-l"></div><div class="div-s">💫 💫 💫</div><div class="div-l"></div></div>
+
+<!-- ═══ 科儀程序 ═══ -->
+<div class="sec-bg1">
+<div class="wrap">
+  <div class="rv">
+    <div class="tag">04 · THE RITUAL 正統尊榮科儀</div>
+    <h2 class="ht" style="font-size:clamp(20px,3.5vw,32px);margin-bottom:18px">對個人能量的「視覺化調度」</h2>
+  </div>
+  <div class="ritual-layout">
+    <div>
+      <div class="steps">
+        <div class="step rv">
+          <div class="step-l"><div class="step-c">🌊</div><div class="step-line"></div></div>
+          <div class="step-b"><span class="st">淨化阻礙 — 洗淨「霉運臉」</span><p>先掃除阻礙好感度的晦氣與負面氣場，讓元神重現光采。</p></div>
+        </div>
+        <div class="step rv">
+          <div class="step-l"><div class="step-c">💫</div><div class="step-line"></div></div>
+          <div class="step-b"><span class="st">魅力催發 — 強行佈下「魅惑結界」</span><p>法師運用秘傳狐仙、合和法力，強行在您的元神外圍佈下「魅惑結界」。</p></div>
+        </div>
+        <div class="step rv">
+          <div class="step-l"><div class="step-c">🌙</div><div class="step-line"></div></div>
+          <div class="step-b"><span class="st">月老星君 / 狐仙娘娘引路</span><p>啟請掌管人際桃花的月老和掌管美與魅力的狐仙娘娘降臨，賦予您驚艷眾生的神采與談吐魅力。</p></div>
+        </div>
+        <div class="step rv">
+          <div class="step-l"><div class="step-c">🔮</div><div class="step-line"></div></div>
+          <div class="step-b"><span class="st">秘法鎖緣 — 讓人對你魂牽夢縈</span><p>不只吸引，更要「鎖住好感」。以極致能量灌注，讓那些被你吸引的人，在離開後依然無法忘懷。</p></div>
+        </div>
+        <div class="step rv">
+          <div class="step-l"><div class="step-c">📜</div></div>
+          <div class="step-b" style="padding-bottom:0"><span class="st">疏文具名上奏 — 定案女神/男神翻身計畫</span><p>由法師親自批命，將您的美麗願望上奏天曹，直接定案您的「女神/男神翻身計畫」。</p></div>
+        </div>
+      </div>
+    </div>
+    <!-- 右側 SVG 裝飾 -->
+    <div class="ritual-svg rv d2">
+      <svg viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <!-- 銅鏡 框 -->
+        <circle cx="120" cy="130" r="90" fill="#F8EEF4" stroke="#C88098" stroke-width="3" opacity="0.6"/>
+        <circle cx="120" cy="130" r="82" fill="#FDF4F8" stroke="#C8A070" stroke-width="1.5" opacity="0.5"/>
+        <!-- 銅鏡 花紋外圈 -->
+        <circle cx="120" cy="130" r="90" fill="none" stroke="#C88098" stroke-width="1" opacity="0.3" stroke-dasharray="6,4"/>
+        <!-- 鏡面光澤 -->
+        <ellipse cx="95" cy="100" rx="20" ry="12" fill="white" opacity="0.2" transform="rotate(-30,95,100)"/>
+        <!-- 鏡中玫瑰 -->
+        <!-- 花瓣 -->
+        <ellipse cx="120" cy="108" rx="14" ry="22" fill="#E8A0B8" stroke="#C07090" stroke-width="2" opacity="0.7"/>
+        <ellipse cx="120" cy="108" rx="14" ry="22" fill="#EEB8CC" stroke="#C07090" stroke-width="2" opacity="0.65" transform="rotate(45,120,130)"/>
+        <ellipse cx="120" cy="108" rx="14" ry="22" fill="#E8A0B8" stroke="#C07090" stroke-width="2" opacity="0.6" transform="rotate(90,120,130)"/>
+        <ellipse cx="120" cy="108" rx="14" ry="22" fill="#EEB8CC" stroke="#C07090" stroke-width="2" opacity="0.65" transform="rotate(135,120,130)"/>
+        <ellipse cx="120" cy="108" rx="12" ry="18" fill="#F4C8D8" stroke="#C07090" stroke-width="1.5" opacity="0.55" transform="rotate(22,120,130)"/>
+        <ellipse cx="120" cy="108" rx="12" ry="18" fill="#F4C8D8" stroke="#C07090" stroke-width="1.5" opacity="0.55" transform="rotate(67,120,130)"/>
+        <ellipse cx="120" cy="108" rx="12" ry="18" fill="#F4C8D8" stroke="#C07090" stroke-width="1.5" opacity="0.55" transform="rotate(112,120,130)"/>
+        <ellipse cx="120" cy="108" rx="12" ry="18" fill="#F4C8D8" stroke="#C07090" stroke-width="1.5" opacity="0.55" transform="rotate(157,120,130)"/>
+        <!-- 花心 -->
+        <circle cx="120" cy="130" r="18" fill="#FFE566" stroke="#CC9900" stroke-width="2" opacity="0.65"/>
+        <circle cx="120" cy="130" r="11" fill="#FFCC44" stroke="#CC9900" stroke-width="1.5" opacity="0.6"/>
+        <circle cx="120" cy="130" r="5" fill="#FF9900" opacity="0.5"/>
+        <!-- 銅鏡把手 -->
+        <rect x="112" y="218" width="16" height="50" rx="8" fill="#C8A070" stroke="#AA7840" stroke-width="2" opacity="0.6"/>
+        <ellipse cx="120" cy="218" rx="14" ry="6" fill="#D4B480" stroke="#AA7840" stroke-width="2" opacity="0.6"/>
+        <!-- 外框八角裝飾 -->
+        <circle cx="120" cy="43" r="5" fill="#C88098" opacity="0.4"/>
+        <circle cx="120" cy="217" r="5" fill="#C88098" opacity="0.4"/>
+        <circle cx="33" cy="130" r="5" fill="#C88098" opacity="0.4"/>
+        <circle cx="207" cy="130" r="5" fill="#C88098" opacity="0.4"/>
+        <circle cx="57" cy="67" r="4" fill="#C8A070" opacity="0.35"/>
+        <circle cx="183" cy="67" r="4" fill="#C8A070" opacity="0.35"/>
+        <circle cx="57" cy="193" r="4" fill="#C8A070" opacity="0.35"/>
+        <circle cx="183" cy="193" r="4" fill="#C8A070" opacity="0.35"/>
+        <!-- 星光 -->
+        <text x="48" y="50" font-size="13" fill="#C8A070" opacity="0.45">✦</text>
+        <text x="185" y="48" font-size="11" fill="#C88098" opacity="0.4">✦</text>
+        <text x="192" y="200" font-size="10" fill="#C8A070" opacity="0.38">✦</text>
+      </svg>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ 特別推薦：搭配方案 ═══ -->
+<div class="special-bg rv">
+  <div class="special-inner">
+    <div style="display:inline-flex;align-items:center;gap:7px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10px;letter-spacing:4px;color:rgba(255,255,255,0.8);background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);padding:5px 14px;border-radius:20px;margin-bottom:20px;">⭐ 特別推薦</div>
+    <h2 class="special-h">八大從業人員、模特兒、直播主<br>的「生存必修課」</h2>
+    <p class="special-desc">在這些競爭極大的行業中，「眼緣」就是金錢<br>魅惑術能讓客人在一排人中一眼挑中你<br>讓粉絲對你產生強烈的情感依賴<br><br>
+    <strong style="color:var(--gold-p)">強烈建議搭配：【魅惑術】+【貴人送錢來】</strong><br>
+    魅惑負責「引流」，貴人負責「變現」<br>讓點檯率、抖內額雙重噴發！</p>
+    <div class="special-combo">
+      <div class="combo-item">
+        <span class="ci-label">TOP · 頂級魅惑</span>
+        <span class="ci-name">魅 惑 術</span>
+        <span class="ci-price">NT$ 19,800</span>
+      </div>
+      <div class="combo-plus">+</div>
+      <div class="combo-item">
+        <span class="ci-label">POWER · 財富引爆</span>
+        <span class="ci-name">貴人送錢來</span>
+        <span class="ci-price">NT$ 19,800</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FAQ ═══ -->
+<div class="wrap-sm">
+  <div class="rv">
+    <div class="tag">05 · FAQ 常見問題</div>
+    <h2 class="ht" style="font-size:clamp(20px,3.5vw,32px);margin-bottom:18px">解除最後的疑慮</h2>
+  </div>
+  <div class="faq-list rv">
+    <div class="faq-item">
+      <div class="faq-q"><span class="fq-icon">💫</span><span style="flex:1">我想「求復合」或「母胎單身想脫單」也適合嗎？</span><span class="fq-arr">+</span></div>
+      <div class="faq-a">非常適合！求復合：魅惑術能強行洗掉你在對方心中「煩人、卑微」的舊印象，重新披上「神祕、誘人」的新外掛，讓對方偶遇時內心產生「他怎麼變這麼迷人？」的震撼感，主動想重新探索你。<br><br>想脫單：你不是沒人愛，是你的「桃花天線」斷了。魅惑術幫你架設一座高功率基地台，但前提是要多出門認識人——老天不會讓對象突然迷路來敲你家門！</div>
+    </div>
+    <div class="faq-item starred">
+      <div class="faq-q"><span class="fq-icon">⭐</span><span style="flex:1">我是八大從業人員、模特兒或直播主，適合嗎？</span><span class="fq-arr">+</span></div>
+      <div class="faq-a">這是您的「生存必修課」！在這些競爭極大的行業中，「眼緣」就是金錢。魅惑術能讓客人在一排人中一眼挑中你，讓粉絲對你產生強烈的情感依賴。強烈建議搭配【魅惑術】+【貴人送錢來】，魅惑負責「引流」，貴人負責「變現」！</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="fq-icon">💫</span><span style="flex:1">做了一定有效嗎？</span><span class="fq-arr">+</span></div>
+      <div class="faq-a">法事是幫你「開外掛」，讓你的氣場直接升級。但請記住，能量在變，你的穿著與自信也要跟著提升。當內外共振時，你會發現世界對你的態度完全變了！</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 緊迫橫幅 ═══ -->
+<div class="urgency rv">
+  <p>拒絕平庸，開啟您的魅力暴走人生<br>
+  <span>💫 用法力強行拿回屬於您的萬千寵愛 💫</span></p>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="closing-bg" id="cta">
+  <svg class="closing-pattern" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="roseCtaP" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+        <ellipse cx="24" cy="14" rx="5" ry="10" fill="#C88098" opacity="0.09"/>
+        <ellipse cx="24" cy="14" rx="5" ry="10" fill="#C88098" opacity="0.07" transform="rotate(72,24,24)"/>
+        <ellipse cx="24" cy="14" rx="5" ry="10" fill="#C88098" opacity="0.09" transform="rotate(144,24,24)"/>
+        <ellipse cx="24" cy="14" rx="5" ry="10" fill="#C88098" opacity="0.07" transform="rotate(216,24,24)"/>
+        <ellipse cx="24" cy="14" rx="5" ry="10" fill="#C88098" opacity="0.09" transform="rotate(288,24,24)"/>
+        <circle cx="24" cy="24" r="3.5" fill="#C8A070" opacity="0.1"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#roseCtaP)"/>
+  </svg>
+<div class="closing-inner">
+  <div class="tag rv" style="display:inline-flex;margin-bottom:20px">06 · REGISTRATION 點亮魅力</div>
+  <h2 class="closing-h rv">開啟你的磁場鍍金</h2>
+  <p class="closing-quote rv">「這一次，讓世界看見你。」</p>
+
+  <div class="cta-card rv">
+    <div class="cta-badge">Magic Halo · 頂級魅惑術科儀</div>
+
+    <div class="price-highlight">
+      <span class="ph-label">LIMITED · 本期專屬結緣價</span>
+      <span class="ph-price">NT$ 19,800</span>
+      <span class="ph-sub">含高階魅惑儀軌・狐仙疏文上奏・強效開運法・法師親身加持</span>
+    </div>
+
+    <div class="cta-points">
+      <div class="cta-pt">
+        <span class="cta-pt-icon">🌊</span>
+        <p><strong>淨化阻礙</strong>掃除晦氣，洗淨霉運臉，重現元神光采</p>
+      </div>
+      <div class="cta-pt">
+        <span class="cta-pt-icon">💫</span>
+        <p><strong>魅惑結界</strong>秘傳狐仙法力，強行鍍金磁場</p>
+      </div>
+      <div class="cta-pt">
+        <span class="cta-pt-icon">🌙</span>
+        <p><strong>月老狐仙引路</strong>啟請神明賦予驚艷眾生的神采</p>
+      </div>
+      <div class="cta-pt">
+        <span class="cta-pt-icon">🔮</span>
+        <p><strong>秘法鎖緣</strong>讓被你吸引的人，離開後依然魂牽夢縈</p>
+      </div>
+    </div>
+
+    <div class="cta-notice">
+      💫 點擊後將跳轉至報名頁面填寫基本資料 💫<br>
+      專人於 24 小時內透過 LINE 與您確認科儀細節
+    </div>
+
+    <!-- ★ href 換成你的報名連結 ★ -->
+    <a href="https://magichalo0217.github.io/magichalo-payment/" target="_blank" class="cta-btn">
+      💫 立即點亮我的魅惑磁場
+    </a>
+    <p class="cta-hint">點擊後將在新視窗開啟報名頁面</p>
+  </div>
+</div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <span class="fb">MAGIC HALO</span>
+  <p>神奇海螺 · 塔羅占卜 · 八字 · 開運 · @magichalo_1319</p>
+</footer>
+
+<div class="sticky">
+  <a href="#cta">💫 立即開啟魅惑磁場 · NT$19,800</a>
+</div>
+
+<script>
+const rvEls = document.querySelectorAll('.rv');
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.07 });
+rvEls.forEach(el => io.observe(el));
+
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const it = q.closest('.faq-item');
+    const was = it.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if(!was) it.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

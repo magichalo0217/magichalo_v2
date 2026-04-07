@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毛小孩隨佛修行 — MAGIC HALO</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&family=M+PLUS+Rounded+1c:wght@400;500;700&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
+<style>
+/* ══ 莫蘭迪 · 彩虹橋奶茶暖金色系 ══ */
+:root {
+  --bg:       #FAF4EE;
+  --bg2:      #F4EBE0;
+  --bg3:      #EDE0D4;
+  --warm:     #D4B090;
+  --warm-d:   #B89070;
+  --caramel:  #987050;
+  --cara-d:   #7A5438;
+  --gold:     #C8A060;
+  --gold-l:   #DEC090;
+  --gold-p:   #F0DEC0;
+  --sage:     #B0B890;   /* 點綴：莫蘭迪鼠尾草綠 */
+  --td:       #3A2818;
+  --tm:       #6A4830;
+  --ts:       #9A7858;
+  --tt:       #C0A888;
+  --bdr:      rgba(200,160,96,0.22);
+  --bdw:      rgba(212,176,144,0.28);
+  --shd:      rgba(200,160,96,0.13);
+  --wh:       #FFFFFF;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg);
+  color:var(--td);
+  font-family:'M PLUS Rounded 1c','Noto Sans TC',sans-serif;
+  font-weight:400;
+  overflow-x:hidden;
+  line-height:1.8;
+}
+
+/* ══ 標題：思源宋體 暖金漸層 ══ */
+.ht {
+  font-family:'Noto Serif TC',serif;
+  font-weight:900;
+  line-height:1.35;
+  letter-spacing:3px;
+  background:linear-gradient(180deg,#E8C888 0%,#C08840 55%,#906030 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  -webkit-mask-image:linear-gradient(180deg,#000 50%,rgba(0,0,0,0.65) 100%);
+  mask-image:linear-gradient(180deg,#000 50%,rgba(0,0,0,0.65) 100%);
+}
+
+.st {
+  font-family:'M PLUS Rounded 1c',sans-serif;
+  font-weight:700; font-size:14px; letter-spacing:1px;
+  color:var(--cara-d); margin-bottom:7px; display:block;
+}
+.bt {
+  font-size:14px; line-height:2.2; color:var(--ts); letter-spacing:0.5px;
+}
+.bt strong {
+  font-weight:700; color:var(--caramel);
+  -webkit-text-fill-color:var(--caramel);
+  background:none; -webkit-background-clip:initial; background-clip:initial;
+}
+
+/* ══ 分類標籤 ══ */
+.tag {
+  display:inline-flex; align-items:center; gap:7px;
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:10px; letter-spacing:4px; color:var(--wh);
+  background:linear-gradient(135deg,var(--warm-d),var(--caramel));
+  padding:5px 14px 5px 10px; border-radius:20px;
+  margin-bottom:14px; white-space:nowrap;
+}
+.tag::before { content:'🐾'; font-size:9px; font-style:normal; }
+
+/* ══ 容器 ══ */
+.wrap   { max-width:820px; margin:0 auto; padding:72px 28px; width:100%; }
+.wrap-sm{ max-width:700px; margin:0 auto; padding:72px 28px; width:100%; }
+.sec-bg1{ background:linear-gradient(160deg,#EEE0D0,#E8D4C0); }
+.sec-bg2{ background:linear-gradient(135deg,#F4EBE0,#EDE4D8); }
+
+/* ══ 分隔線 ══ */
+.div { display:flex; align-items:center; gap:14px; max-width:600px; margin:0 auto; padding:0 28px; }
+.div-l { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(200,160,96,0.3),transparent); }
+.div-s { color:var(--warm); font-size:11px; letter-spacing:6px; font-style:italic; font-family:'Cormorant Garamond',serif; }
+
+/* ══ 價格標籤 ══ */
+.price-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-l));
+  color:var(--wh); font-family:'M PLUS Rounded 1c',sans-serif;
+  font-weight:700; font-size:13px; letter-spacing:3px;
+  padding:8px 24px; border-radius:50px;
+  box-shadow:0 4px 16px rgba(200,160,96,0.3);
+  margin-bottom:20px;
+}
+.price-tag span { font-size:20px; font-weight:700; letter-spacing:1px; }
+
+/* ══ HERO ══ */
+.hero {
+  position:relative; min-height:100vh;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center; padding:80px 24px 100px;
+  overflow:hidden;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 90% 60% at 20% 5%,  rgba(232,200,136,0.45) 0%,transparent 55%),
+    radial-gradient(ellipse 70% 55% at 80% 85%, rgba(212,176,144,0.35) 0%,transparent 55%),
+    linear-gradient(168deg,#FDF8F0 0%,#FAF0E0 45%,#F4E8D4 100%);
+}
+
+/* 星星漂浮 */
+.star {
+  position:absolute; pointer-events:none;
+  color:var(--gold); opacity:0.15;
+  animation:star-drift ease-in-out infinite;
+  font-size:14px;
+}
+.s1{top:12%;left:8%;animation-duration:8s;}
+.s2{top:20%;right:12%;animation-duration:11s;animation-delay:2s;font-size:10px;}
+.s3{top:65%;left:6%;animation-duration:14s;animation-delay:5s;font-size:18px;color:var(--warm);}
+.s4{top:45%;right:8%;animation-duration:9s;animation-delay:1s;font-size:11px;}
+.s5{bottom:22%;left:14%;animation-duration:12s;animation-delay:3s;font-size:16px;}
+.s6{top:35%;left:90%;animation-duration:10s;animation-delay:4s;font-size:9px;}
+@keyframes star-drift {
+  0%,100%{transform:translateY(0) rotate(0deg);opacity:0.12;}
+  50%{transform:translateY(-18px) rotate(20deg);opacity:0.22;}
+}
+
+.ring {
+  position:absolute; border-radius:50%;
+  top:50%; left:50%; transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.ring1{width:520px;height:520px;border:1px solid rgba(200,160,96,0.14);animation:rspin 38s linear infinite;}
+.ring2{width:360px;height:360px;border:1px solid rgba(212,176,144,0.1);animation:rspin 26s linear infinite reverse;}
+@keyframes rspin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+.hero-inner { position:relative; z-index:2; max-width:720px; }
+
+.hero-brand {
+  display:flex; align-items:center; justify-content:center; gap:12px;
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:11px; letter-spacing:6px; color:var(--gold);
+  margin-bottom:20px;
+  text-shadow:0 1px 10px rgba(255,248,235,0.9);
+  opacity:0; animation:up 0.9s 0.2s forwards;
+}
+.hero-brand::before,.hero-brand::after{content:'—';opacity:0.4;}
+
+.hero-price {
+  opacity:0; animation:up 0.9s 0.3s forwards;
+  margin-bottom:18px;
+}
+
+.hero-eye {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:clamp(14px,2.2vw,18px); color:var(--warm-d);
+  letter-spacing:3px; margin-bottom:16px;
+  text-shadow:0 1px 12px rgba(255,248,235,0.9);
+  opacity:0; animation:up 0.9s 0.45s forwards;
+}
+
+.hero-h1 {
+  font-family:'Noto Serif TC',serif; font-weight:900;
+  font-size:clamp(26px,5.5vw,50px);
+  line-height:1.3; letter-spacing:4px; margin-bottom:8px;
+  background:linear-gradient(180deg,#E8C880 0%,#C08840 55%,#905828 100%);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  -webkit-mask-image:linear-gradient(180deg,#000 50%,rgba(0,0,0,0.68) 100%);
+  mask-image:linear-gradient(180deg,#000 50%,rgba(0,0,0,0.68) 100%);
+  opacity:0; animation:up 0.9s 0.6s forwards;
+}
+
+.hero-quote {
+  background:rgba(255,255,255,0.55); backdrop-filter:blur(10px);
+  border:1px solid rgba(200,160,96,0.28);
+  border-left:3px solid var(--warm);
+  padding:16px 24px; border-radius:12px;
+  margin-bottom:28px;
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:clamp(14px,2vw,17px); color:var(--tm);
+  letter-spacing:2px; line-height:1.9;
+  text-shadow:0 1px 8px rgba(255,248,235,0.8);
+  opacity:0; animation:up 0.9s 0.75s forwards;
+}
+
+.hero-sub {
+  font-size:clamp(13px,1.8vw,15px); line-height:2.3;
+  color:var(--ts); margin-bottom:44px; letter-spacing:0.8px;
+  text-shadow:0 1px 8px rgba(255,248,235,0.95);
+  opacity:0; animation:up 0.9s 0.9s forwards;
+}
+.hero-sub strong {
+  font-weight:700; color:var(--caramel);
+  -webkit-text-fill-color:var(--caramel);
+  background:none; -webkit-background-clip:initial; background-clip:initial;
+}
+
+.hero-btns {
+  display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+  opacity:0; animation:up 0.9s 1.05s forwards;
+}
+.btn-p {
+  background:linear-gradient(135deg,var(--caramel),var(--warm-d),var(--gold));
+  background-size:250%;
+  color:var(--wh); font-family:'M PLUS Rounded 1c',sans-serif;
+  font-weight:700; font-size:14px; letter-spacing:3px;
+  padding:15px 40px; border:none; cursor:pointer;
+  text-decoration:none; display:inline-block; border-radius:50px;
+  box-shadow:0 6px 24px rgba(184,144,112,0.3);
+  transition:transform 0.3s,box-shadow 0.3s;
+  animation:shimmer 4s ease-in-out infinite 2s;
+}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(184,144,112,0.42);}
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+.btn-g {
+  background:rgba(255,255,255,0.55); backdrop-filter:blur(8px);
+  border:1.5px solid var(--bdw); color:var(--caramel);
+  font-family:'M PLUS Rounded 1c',sans-serif;
+  font-size:13px; letter-spacing:2px;
+  padding:15px 30px; cursor:pointer; text-decoration:none;
+  display:inline-block; border-radius:50px;
+  transition:background 0.3s,border-color 0.3s;
+}
+.btn-g:hover{background:rgba(255,255,255,0.8);border-color:var(--warm);}
+
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+.scroll-hint {
+  position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
+  z-index:2; display:flex; flex-direction:column; align-items:center; gap:8px;
+  opacity:0; animation:up 1s 1.8s forwards;
+}
+.scroll-hint span{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:9px;letter-spacing:5px;color:var(--tt);}
+.scroll-orb{width:7px;height:7px;border-radius:50%;background:var(--warm);opacity:0.45;animation:orb 1.6s ease-in-out infinite;}
+@keyframes orb{0%,100%{transform:translateY(0);opacity:0.45}50%{transform:translateY(11px);opacity:0.15}}
+
+/* ══ WHAT IS ══ */
+.intro-card {
+  background:rgba(255,255,255,0.6); backdrop-filter:blur(10px);
+  border:1px solid var(--bdw); padding:32px 28px; margin-top:24px;
+  border-radius:20px; box-shadow:0 4px 32px var(--shd); position:relative;
+}
+.intro-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,var(--warm),var(--gold-l),var(--warm));
+  border-radius:20px 20px 0 0;
+}
+.intro-card::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:50px;
+  background:linear-gradient(transparent,rgba(255,255,255,0.28));
+  border-radius:0 0 20px 20px; pointer-events:none;
+}
+
+.info-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px; }
+@media(max-width:600px){.info-row{grid-template-columns:1fr;}}
+
+.info-card {
+  background:linear-gradient(150deg,rgba(255,255,255,0.75),rgba(248,238,224,0.65));
+  border:1px solid rgba(200,160,96,0.2);
+  padding:20px 18px; border-radius:14px; position:relative; overflow:hidden;
+}
+.info-card::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:28px;
+  background:linear-gradient(transparent,rgba(248,238,224,0.35)); pointer-events:none;
+}
+.info-title {
+  font-family:'Noto Serif TC',serif; font-weight:700;
+  font-size:15px; letter-spacing:3px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-l));
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  display:block; margin-bottom:9px;
+}
+.info-card p { font-size:13px; color:var(--ts); line-height:1.9; }
+
+/* ══ 擔憂區塊 ══ */
+.worry-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:24px; }
+@media(max-width:600px){.worry-grid{grid-template-columns:1fr;}}
+
+.worry-card {
+  background:rgba(255,255,255,0.55); backdrop-filter:blur(8px);
+  border:1px solid rgba(200,160,96,0.2);
+  padding:22px 18px; border-radius:16px;
+  position:relative; overflow:hidden;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.worry-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px var(--shd);}
+.worry-card::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:36px;
+  background:linear-gradient(transparent,rgba(255,255,255,0.28));
+  pointer-events:none; border-radius:0 0 16px 16px;
+}
+.worry-card .wc-icon{font-size:22px;margin-bottom:10px;display:block;}
+.worry-card p{font-size:13px;color:var(--ts);line-height:1.9;}
+
+/* ══ 引言大字 ══ */
+.quote-block { text-align:center; padding:48px 32px; position:relative; }
+.quote-block::before {
+  content:'"'; position:absolute; top:20px; left:50%; transform:translateX(-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:80px; color:var(--warm); opacity:0.15; line-height:1;
+}
+.quote-main {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:clamp(17px,2.8vw,24px); color:var(--tm);
+  letter-spacing:3px; line-height:1.9; position:relative; z-index:1;
+}
+.quote-sub { font-size:12px; color:var(--tt); letter-spacing:2px; margin-top:12px; font-style:italic; }
+
+/* ══ 三大福報 ══ */
+.merit-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; margin-top:28px; }
+@media(max-width:600px){.merit-grid{grid-template-columns:1fr;}}
+
+.merit-cell {
+  background:rgba(255,255,255,0.55); backdrop-filter:blur(6px);
+  border:1px solid rgba(200,160,96,0.2);
+  padding:28px 20px; border-radius:18px;
+  position:relative; overflow:hidden;
+  transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
+  text-align:center;
+}
+.merit-cell:hover{transform:translateY(-4px);box-shadow:0 8px 22px var(--shd);border-color:var(--bdr);}
+.merit-cell::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,var(--warm),var(--gold-l));
+  border-radius:18px 18px 0 0; opacity:0; transition:opacity 0.3s;
+}
+.merit-cell:hover::before{opacity:1;}
+.merit-cell::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:40px;
+  background:linear-gradient(transparent,rgba(255,255,255,0.32));
+  pointer-events:none; border-radius:0 0 18px 18px;
+}
+.merit-icon{font-size:32px;display:block;margin-bottom:12px;}
+.merit-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:10px;letter-spacing:3px;color:var(--warm);margin-bottom:8px;display:block;}
+.merit-title {
+  font-family:'M PLUS Rounded 1c',sans-serif; font-weight:700;
+  font-size:14px; letter-spacing:2px;
+  background:linear-gradient(135deg,var(--caramel),var(--warm-d));
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  display:block; margin-bottom:8px;
+}
+.merit-desc{font-size:12px;color:var(--ts);line-height:1.85;}
+
+/* ══ 科儀程序 ══ */
+.steps{margin-top:32px;display:flex;flex-direction:column;}
+.step{display:flex;}
+.step-l{display:flex;flex-direction:column;align-items:center;width:52px;flex-shrink:0;}
+.step-c {
+  width:44px; height:44px; border-radius:50%;
+  background:linear-gradient(135deg,var(--warm),var(--gold));
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; flex-shrink:0; z-index:1;
+  box-shadow:0 4px 14px rgba(200,160,96,0.3);
+}
+.step-line{flex:1;width:1px;background:linear-gradient(to bottom,rgba(200,160,96,0.3),transparent);min-height:32px;}
+.step-b{flex:1;min-width:0;padding:2px 0 44px 20px;word-break:break-word;}
+.step-b .st{margin-bottom:5px;}
+.step-b p{font-size:13px;color:var(--ts);line-height:1.95;}
+
+/* ══ FAQ ══ */
+.faq-list{margin-top:24px;display:flex;flex-direction:column;gap:9px;}
+.faq-item {
+  background:rgba(255,255,255,0.58); backdrop-filter:blur(8px);
+  border:1px solid rgba(200,160,96,0.2); border-radius:14px; overflow:hidden;
+  box-shadow:0 2px 10px var(--shd);
+}
+.faq-q {
+  padding:18px 20px; font-family:'M PLUS Rounded 1c',sans-serif;
+  font-weight:600; font-size:14px; color:var(--td); letter-spacing:0.5px;
+  display:flex; justify-content:space-between; align-items:center;
+  cursor:pointer; transition:background 0.3s; gap:12px;
+}
+.faq-q:hover{background:rgba(255,255,255,0.5);}
+.faq-q .fq-icon{color:var(--warm);font-size:11px;flex-shrink:0;}
+.faq-q .fq-arr{color:var(--warm-d);font-size:20px;transition:transform 0.3s;flex-shrink:0;}
+.faq-item.open .fq-arr{transform:rotate(45deg);}
+.faq-a {
+  max-height:0; overflow:hidden;
+  transition:max-height 0.4s ease,padding 0.3s;
+  font-size:13px; color:var(--ts); line-height:1.95;
+  padding:0 20px;
+  background:linear-gradient(135deg,rgba(255,255,255,0.42),rgba(248,238,224,0.3));
+  border-top:1px solid transparent;
+}
+.faq-item.open .faq-a{max-height:220px;padding:16px 20px;border-top-color:rgba(200,160,96,0.14);}
+
+/* ══ 結語 + CTA ══ */
+.closing-bg {
+  background:linear-gradient(160deg,#EAD8C0,#E0CCA8,#EAD8C0);
+  padding:90px 0; text-align:center; position:relative; overflow:hidden;
+}
+.closing-bg::before {
+  content:''; position:absolute; top:-100px; left:50%; transform:translateX(-50%);
+  width:500px; height:500px; border-radius:50%;
+  background:radial-gradient(circle,rgba(200,168,96,0.08),transparent 60%);
+  pointer-events:none;
+}
+.closing-inner{max-width:600px;margin:0 auto;padding:0 28px;position:relative;z-index:1;}
+
+.closing-h {
+  font-family:'Noto Serif TC',serif; font-weight:900;
+  font-size:clamp(20px,3.5vw,32px); letter-spacing:3px; margin-bottom:10px;
+  background:linear-gradient(180deg,#E8C880 0%,#C08840 55%,#906030 100%);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  -webkit-mask-image:linear-gradient(180deg,#000 50%,rgba(0,0,0,0.68) 100%);
+  mask-image:linear-gradient(180deg,#000 50%,rgba(0,0,0,0.68) 100%);
+}
+.closing-quote {
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:clamp(14px,2vw,18px); color:var(--tm);
+  letter-spacing:2px; line-height:2; margin-bottom:36px;
+}
+
+.cta-card {
+  background:rgba(255,255,255,0.68); backdrop-filter:blur(16px);
+  border:1px solid rgba(200,160,96,0.28);
+  padding:44px 36px; border-radius:28px;
+  box-shadow:0 12px 56px rgba(200,160,96,0.16);
+  position:relative;
+}
+.cta-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:4px;
+  background:linear-gradient(90deg,var(--warm),var(--gold-l),var(--warm));
+  background-size:200%; animation:stripe 3s linear infinite;
+  border-radius:28px 28px 0 0;
+}
+@keyframes stripe{0%{background-position:0%}100%{background-position:200%}}
+
+.cta-badge {
+  position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+  background:rgba(255,255,255,0.96); border:1px solid var(--bdr);
+  padding:4px 18px; border-radius:20px;
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:10px; letter-spacing:4px; color:var(--gold); white-space:nowrap;
+}
+
+/* 結緣價強調 */
+.price-highlight {
+  background:linear-gradient(135deg,rgba(248,238,224,0.8),rgba(255,248,235,0.8));
+  border:1px solid var(--bdr); border-radius:16px;
+  padding:20px 24px; margin-bottom:28px; text-align:center;
+}
+.price-highlight .ph-label{font-size:11px;letter-spacing:4px;color:var(--ts);margin-bottom:6px;display:block;}
+.price-highlight .ph-price {
+  font-family:'Noto Serif TC',serif; font-weight:900;
+  font-size:36px; letter-spacing:2px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-l));
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; display:block;
+}
+.price-highlight .ph-sub{font-size:11px;color:var(--tt);margin-top:4px;letter-spacing:2px;display:block;}
+
+.cta-points {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:10px; margin-bottom:28px; text-align:left;
+}
+@media(max-width:480px){.cta-points{grid-template-columns:1fr;}}
+
+.cta-pt {
+  display:flex; gap:10px; align-items:flex-start;
+  background:rgba(248,238,224,0.5);
+  border:1px solid rgba(200,160,96,0.2);
+  padding:14px; border-radius:12px;
+}
+.cta-pt-icon{color:var(--warm);font-size:14px;flex-shrink:0;margin-top:1px;}
+.cta-pt p{font-size:12px;color:var(--tm);line-height:1.7;}
+.cta-pt p strong{font-weight:700;color:var(--cara-d);display:block;margin-bottom:2px;-webkit-text-fill-color:var(--cara-d);background:none;}
+
+.cta-notice {
+  font-size:11px; color:var(--ts); line-height:1.9;
+  margin-bottom:28px; padding:12px 16px;
+  background:rgba(248,238,224,0.5);
+  border:1px solid rgba(200,160,96,0.18); border-radius:10px; text-align:center;
+}
+
+.cta-btn {
+  display:block; width:100%;
+  background:linear-gradient(135deg,var(--cara-d) 0%,var(--warm-d) 45%,var(--gold) 100%);
+  background-size:200%; color:var(--wh);
+  font-family:'M PLUS Rounded 1c',sans-serif;
+  font-weight:700; font-size:16px; letter-spacing:4px;
+  padding:18px 24px; border:none; cursor:pointer; border-radius:50px;
+  box-shadow:0 6px 24px rgba(184,144,80,0.32);
+  text-decoration:none; text-align:center;
+  transition:background-position 0.4s,transform 0.3s,box-shadow 0.3s;
+  animation:shimmer 4s ease-in-out infinite;
+}
+.cta-btn:hover{background-position:100%;transform:translateY(-3px);box-shadow:0 10px 32px rgba(184,144,80,0.45);}
+.cta-hint{font-size:11px;color:var(--tt);margin-top:14px;letter-spacing:1px;text-align:center;}
+
+/* ══ 緊迫橫幅 ══ */
+.urgency {
+  background:linear-gradient(135deg,var(--cara-d),var(--warm-d),var(--gold));
+  background-size:200%; animation:shimmer 5s ease-in-out infinite;
+  padding:20px 28px; text-align:center; position:relative; overflow:hidden;
+}
+.urgency::after{content:'';position:absolute;bottom:0;left:0;right:0;height:36px;background:linear-gradient(transparent,rgba(0,0,0,0.08));pointer-events:none;}
+.urgency p{font-family:'M PLUS Rounded 1c',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;color:rgba(255,255,255,0.92);line-height:1.9;position:relative;z-index:1;}
+.urgency span{color:var(--gold-p);}
+
+/* ══ FOOTER ══ */
+footer{text-align:center;padding:44px 24px;background:var(--bg3);border-top:1px solid var(--bdw);}
+footer .fb {
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:15px;letter-spacing:7px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-l));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  display:block;margin-bottom:9px;
+}
+footer p{font-size:11px;color:var(--tt);letter-spacing:2px;}
+
+/* ══ REVEAL ══ */
+.rv{opacity:0;transform:translateY(20px);transition:opacity 0.75s ease,transform 0.75s ease;}
+.rv.on{opacity:1;transform:translateY(0);}
+.d1{transition-delay:0.1s}.d2{transition-delay:0.2s}.d3{transition-delay:0.3s}.d4{transition-delay:0.4s}
+
+/* ══ STICKY ══ */
+.sticky {
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(250,244,238,0.93);backdrop-filter:blur(14px);
+  border-top:1px solid var(--bdw);padding:11px 18px;
+  z-index:100;display:none;justify-content:center;
+}
+@media(max-width:640px){.sticky{display:flex;}}
+.sticky a {
+  background:linear-gradient(135deg,var(--caramel),var(--warm-d),var(--gold));
+  color:var(--wh);font-family:'M PLUS Rounded 1c',sans-serif;
+  font-weight:700;font-size:13px;letter-spacing:2px;
+  padding:13px 32px;text-decoration:none;display:block;
+  width:100%;text-align:center;border-radius:50px;
+  box-shadow:0 4px 18px rgba(184,144,80,0.22);
+}
+
+.hero-svg-wrap{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+.whatis-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:44px;align-items:center;}
+@media(max-width:700px){.whatis-layout{grid-template-columns:1fr;}}
+.whatis-svg{display:flex;align-items:center;justify-content:center;}
+.whatis-svg svg{width:100%;max-width:300px;}
+.quote-block{position:relative;overflow:hidden;}
+.quote-pattern{position:absolute;inset:0;pointer-events:none;opacity:0.07;}
+.closing-bg{position:relative;}
+.closing-pattern{position:absolute;inset:0;pointer-events:none;opacity:0.06;}
+
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="ring ring1"></div><div class="ring ring2"></div>
+  <div class="star s1">✦</div><div class="star s2">✧</div>
+  <div class="star s3">🐾</div><div class="star s4">✦</div>
+  <div class="star s5">✧</div><div class="star s6">✦</div>
+
+  <div class="hero-inner">
+    <div class="hero-brand">MAGIC HALO · RITUAL SERVICE</div>
+
+    <div class="hero-eye">給予牠超越彩虹橋的永恆福報</div>
+    <h1 class="hero-h1">讓毛小孩隨佛修行</h1>
+    <div class="hero-quote">
+      「牠的一生都在等你回家<br>現在，換你送牠回佛祖的家。」
+    </div>
+    <p class="hero-sub">
+      毛小孩的靈魂因對主人的<strong>深深眷戀</strong><br>
+      徘徊在彩虹橋前，不忍離去<br>
+      這一次，送牠踏上那條鋪滿蓮花的修行之路 🌈
+    </p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-p">🐾 為毛小孩預約超渡科儀</a>
+      <a href="#what-is" class="btn-g">了解更多 ↓</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-orb"></div>
+  </div>
+</section>
+
+<!-- ═══ WHAT IS ═══ -->
+<div id="what-is">
+<div class="wrap rv">
+  <div class="tag">01 · WHAT IS 隨佛修行</div>
+  <h2 class="ht" style="font-size:clamp(22px,4vw,36px);margin-bottom:18px">愛牠，就給牠最好的歸宿</h2>
+  <p class="bt">在靈性的維度中，毛小孩與我們的相遇是一場深刻的緣分。但當皮囊卸下，單純的靈魂往往因為對主人的眷戀，徘徊在彩虹橋前不忍離去。渡化不只是物質供養——透過法師的<strong>招請、淨化與佛法開示</strong>，是將毛小孩的地位從「受供養的寵物」提升為「隨佛修行的靈子」，讓牠真正脫離畜生道的輪迴執著。</p>
+  <div class="intro-card">
+    <div class="info-row">
+      <div class="info-card">
+        <span class="info-title">靈體的處境</span>
+        <p>雖然不再受病痛折磨，但單純的靈體若無導引，容易在陰陽交界處感到孤單、困惑，不知道該往哪裡去。</p>
+      </div>
+      <div class="info-card">
+        <span class="info-title">功德的意義</span>
+        <p>洗淨這一世作為動物的習性與病痛，讓靈體輕盈充滿光采，跟隨佛祖修行，累積往生極樂、轉世為人的資糧。</p>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<div class="div rv"><div class="div-l"></div><div class="div-s">🐾 🐾 🐾</div><div class="div-l"></div></div>
+
+<!-- ═══ 擔憂 ═══ -->
+<div class="sec-bg1">
+<div class="wrap">
+  <div class="rv">
+    <div class="tag">02 · SIGNS 牠在那頭過得好嗎</div>
+    <h2 class="ht" style="font-size:clamp(20px,3.5vw,32px);margin-bottom:12px">你的思念，是牠最甜蜜也最沈重的負擔</h2>
+    <p class="bt">如果你常有以下心情，那是毛小孩在能量場中向你發出的「求救」與「告別」：</p>
+  </div>
+  <div class="worry-grid">
+    <div class="worry-card rv d1">
+      <span class="wc-icon">😔</span>
+      <span class="st">無法停止的擔憂</span>
+      <p>擔心牠在那邊會不會冷？會不會被欺負？怕牠沒東西吃，更怕牠找不到回家的路。</p>
+    </div>
+    <div class="worry-card rv d2">
+      <span class="wc-icon">🌙</span>
+      <span class="st">夢中的重逢</span>
+      <p>經常夢見牠，但夢裡的牠總是靜靜地看著你，或是看起來有些瘦弱、神情憂鬱。</p>
+    </div>
+    <div class="worry-card rv d3">
+      <span class="wc-icon">🏠</span>
+      <span class="st">莫名的感應</span>
+      <p>家裡的某個角落似乎還有牠的氣息，心底深處總有個空洞，覺得自己「還沒為牠做完最後一件事」。</p>
+    </div>
+    <div class="worry-card rv d4">
+      <span class="wc-icon">⚖️</span>
+      <span class="st">害怕影響運勢</span>
+      <p>深愛牠，卻也擔心陰陽兩隔的磁場牽絆，會影響到家裡的氣氛或自身的能量平衡。</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ 引言 ═══ -->
+<div class="quote-block rv"><svg class="quote-pattern" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs><pattern id="pawP2" x="0" y="0" width="44" height="44" patternUnits="userSpaceOnUse">
+      <circle cx="22" cy="24" r="6" fill="#C8A060" opacity="0.15"/>
+      <circle cx="14" cy="17" r="3.5" fill="#C8A060" opacity="0.12"/>
+      <circle cx="22" cy="14" r="3.5" fill="#C8A060" opacity="0.12"/>
+      <circle cx="30" cy="17" r="3.5" fill="#C8A060" opacity="0.12"/>
+    </pattern></defs>
+    <rect width="100%" height="100%" fill="url(#pawP2)"/>
+  </svg>
+  <p class="quote-main">「這一世，牠用一生守護你<br>這一刻，請你送牠一個永恆的未來。」</p>
+  <p class="quote-sub">— MAGIC HALO · 毛小孩超渡科儀</p>
+</div>
+
+<div class="div rv"><div class="div-l"></div><div class="div-s">🐾 🐾 🐾</div><div class="div-l"></div></div>
+
+<!-- ═══ 三大福報 ═══ -->
+<div class="sec-bg2">
+<div class="wrap">
+  <div class="rv">
+    <div class="tag">03 · MERITS 三大圓滿福報</div>
+    <h2 class="ht" style="font-size:clamp(20px,3.5vw,32px);margin-bottom:18px">送給毛小孩最奢華的「成年禮」</h2>
+    <p class="bt">完成這場靈性升級，是您能給予牠最深的愛：</p>
+  </div>
+  <div class="merit-grid">
+    <div class="merit-cell rv d1">
+      <span class="merit-icon">🕊️</span>
+      <span class="merit-num">merit 01</span>
+      <span class="merit-title">脫卻皮囊，法界重生</span>
+      <div class="merit-desc">洗淨這一世作為動物的習性與病痛，讓靈體輕盈、充滿光采，不再受苦。</div>
+    </div>
+    <div class="merit-cell rv d2">
+      <span class="merit-icon">🪷</span>
+      <span class="merit-num">merit 02</span>
+      <span class="merit-title">蓮花座下，聽經聞法</span>
+      <div class="merit-desc">讓牠跟隨佛祖修行，累積往生極樂、甚至轉世為人的資糧。這份「靈性投資」保佑牠未來世不再受苦。</div>
+    </div>
+    <div class="merit-cell rv d3">
+      <span class="merit-icon">✨</span>
+      <span class="merit-num">merit 03</span>
+      <span class="merit-title">磁場清淨，愛不消失</span>
+      <div class="merit-desc">化解人寵之間的「執著磁場」，將悲傷轉化為守護的力量。牠不再是家中的陰影，而是守護你的靈界小天使。</div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<div class="div rv"><div class="div-l"></div><div class="div-s">🐾 🐾 🐾</div><div class="div-l"></div></div>
+
+<!-- ═══ 科儀程序 ═══ -->
+<div class="sec-bg1">
+<div class="wrap">
+  <div class="rv">
+    <div class="tag">04 · THE RITUAL 正統溫馨科儀</div>
+    <h2 class="ht" style="font-size:clamp(20px,3.5vw,32px);margin-bottom:18px">用最慈悲的心，為牠舉辦「畢業典禮」</h2>
+  </div>
+  <div class="steps">
+    <div class="step rv">
+      <div class="step-l"><div class="step-c">🔔</div><div class="step-line"></div></div>
+      <div class="step-b"><span class="st">靈名召請 — 溫柔喚回牠的靈魂</span><p>法師依據照片與生前習性，溫柔喚回牠的靈魂，讓牠知道主人沒忘記牠。</p></div>
+    </div>
+    <div class="step rv">
+      <div class="step-l"><div class="step-c">🍚</div><div class="step-line"></div></div>
+      <div class="step-b"><span class="st">甘露施食 — 飽餐一頓，補足靈體能量</span><p>準備專屬的靈力供品，讓牠吃飽喝足，補足靈體能量，為接引做好準備。</p></div>
+    </div>
+    <div class="step rv">
+      <div class="step-l"><div class="step-c">🪷</div><div class="step-line"></div></div>
+      <div class="step-b"><span class="st">佛光引路 — 踏上鋪滿蓮花的修行之路</span><p>在梵音圍繞中，由佛祖正式接引。這不是永別，而是讓牠踏上那條鋪滿蓮花的修行之路。</p></div>
+    </div>
+    <div class="step rv">
+      <div class="step-l"><div class="step-c">💛</div></div>
+      <div class="step-b" style="padding-bottom:0"><span class="st">功德回向 — 讓您的心靈獲得平靜</span><p>將法事功德回向給飼主，讓您的心靈獲得前所未有的平靜與安慰。</p></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ FAQ ═══ -->
+<div class="wrap-sm">
+  <div class="rv">
+    <div class="tag">05 · FAQ 常見問題</div>
+    <h2 class="ht" style="font-size:clamp(20px,3.5vw,32px);margin-bottom:18px">解除最後的疑慮</h2>
+  </div>
+  <div class="faq-list rv">
+    <div class="faq-item">
+      <div class="faq-q"><span class="fq-icon">🐾</span><span style="flex:1">我的毛小孩離開很久了，現在做還有用嗎？</span><span class="fq-arr">+</span></div>
+      <div class="faq-a">靈界沒有時間限制。只要愛還在，這份佛緣隨時都能接上。現在補做，正是給予牠「遲來的升級」。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="fq-icon">🐾</span><span style="flex:1">牠聽得懂佛經嗎？</span><span class="fq-arr">+</span></div>
+      <div class="faq-a">靈體溝通靠的是頻率而非語言。佛經的慈悲頻率能直接安撫牠的恐懼，讓牠感到安全與祥和。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="fq-icon">🐾</span><span style="flex:1">做完之後，我還能夢見牠嗎？</span><span class="fq-arr">+</span></div>
+      <div class="faq-a">可以。但夢境會從原本的憂傷轉為光明、開朗。那代表牠已成功轉化，正在更高層次守護著你。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 緊迫橫幅 ═══ -->
+<div class="urgency rv">
+  <p>別再讓牠在彩虹橋前徘徊等候<br>
+  <span>🐾 給牠最好的禮物，不是眼淚，而是「隨佛修行」的無上功德 🐾</span></p>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="closing-bg" id="cta"><svg class="closing-pattern" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs><pattern id="rbP" x="0" y="0" width="60" height="30" patternUnits="userSpaceOnUse">
+      <path d="M0,28 Q30,8 60,28" stroke="#FF9F43" stroke-width="1.5" fill="none" opacity="0.2"/>
+      <path d="M0,24 Q30,4 60,24" stroke="#FECA57" stroke-width="1.5" fill="none" opacity="0.18"/>
+      <path d="M0,20 Q30,0 60,20" stroke="#48DBFB" stroke-width="1.5" fill="none" opacity="0.18"/>
+    </pattern></defs>
+    <rect width="100%" height="100%" fill="url(#rbP)"/>
+  </svg>
+<div class="closing-inner">
+  <div class="tag rv" style="display:inline-flex;margin-bottom:20px">06 · REGISTRATION 預約科儀</div>
+  <h2 class="closing-h rv">送牠一場不遺憾的遠行</h2>
+  <p class="closing-quote rv">「讓愛昇華，送牠踏上光明的彩虹橋<br>讓牠在那頭，笑著對你揮手。」</p>
+
+  <div class="cta-card rv">
+    <div class="cta-badge">Magic Halo · 毛小孩超渡科儀</div>
+
+    <div class="price-highlight">
+      <span class="ph-label">LIMITED · 結緣價</span>
+      <span class="ph-price">NT$ 3,600</span>
+      <span class="ph-sub">讓愛在法界重逢 · 讓牠在那頭笑著對你揮手</span>
+    </div>
+
+    <div class="cta-points">
+      <div class="cta-pt">
+        <span class="cta-pt-icon">🐾</span>
+        <p><strong>照片即可辦理</strong>依照片與習性精準召請靈魂</p>
+      </div>
+      <div class="cta-pt">
+        <span class="cta-pt-icon">🪷</span>
+        <p><strong>佛化溫馨渡法</strong>以慈悲佛光引領，非驅趕</p>
+      </div>
+      <div class="cta-pt">
+        <span class="cta-pt-icon">✨</span>
+        <p><strong>功德回向飼主</strong>您的心靈也同時得到療癒</p>
+      </div>
+      <div class="cta-pt">
+        <span class="cta-pt-icon">💛</span>
+        <p><strong>可代辦科儀</strong>無需親自到場，法師代為執行</p>
+      </div>
+    </div>
+
+    <div class="cta-notice">
+      🐾 點擊後將跳轉至報名頁面填寫基本資料 🐾<br>
+      專人於 24 小時內透過 LINE 與您確認科儀細節
+    </div>
+
+    <!-- ★ href 換成你的報名連結 ★ -->
+    <a href="https://magichalo0217.github.io/magichalo-payment/" target="_blank" class="cta-btn">
+      🐾 立即為毛小孩預約超渡科儀
+    </a>
+    <p class="cta-hint">點擊後將在新視窗開啟報名頁面</p>
+  </div>
+</div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <span class="fb">MAGIC HALO</span>
+  <p>神奇海螺 · 塔羅占卜 · 八字 · 開運 · @magichalo_1319</p>
+</footer>
+
+<div class="sticky">
+  <a href="#cta">🐾 立即預約毛小孩超渡科儀</a>
+</div>
+
+<script>
+const rvEls = document.querySelectorAll('.rv');
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.07 });
+rvEls.forEach(el => io.observe(el));
+
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const it = q.closest('.faq-item');
+    const was = it.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if(!was) it.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
